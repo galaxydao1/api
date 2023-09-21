@@ -1,0 +1,2440 @@
+# Basic Information
+
+## Spot API
+
+**Using the Spot API to develop applications, you can accurately obtain market data of the Bibox spot market and conduct automated transactions quickly. The Spot API contains many interfaces, which are roughly divided into the following groups according to their functions：**
+
+* Market Data Endpoints REST interface for obtaining market data
+* User Data Endpoints REST interface for obtaining user private data
+* Market Data Streams WebSocket interface for obtaining market data
+* User Data Streams WebSocket interface for obtaining user private data
+
+**Spot API usage is as followsBase URL：**
+
+* Market Data Endpoints: https://api.bibox.com/api
+* User Data Endpoints: https://api.bibox.com/api
+* Market Data Stream: wss://market-wss.bibox360.com
+* User Data Stream: wss://user-wss.bibox360.com
+
+**List of alternate API domains**
+
+[https://api.bibox.tel/v1/public/queryApiDomain](https://api.bibox.tel/v1/public/queryApiDomain)
+
+**The REST interface of the Spot API uses the following HTTP methods：**
+
+* GET Used to get market data or private data
+* POST Used to submit orders and other operations
+* DELETE Used to revoke orders and other operations
+
+**Parameters required by the REST interface of the Spot API should be appended to the request according to the following rules：**
+
+* Interface parameters of type GET should be appended to the Query String
+* The interface parameters of the POST type should be appended to the Request Body in JSON format
+* Interface parameters of type DELETE should be appended to Request Body in JSON format
+
+**Response**
+
+The response data of the Spot API is returned in JSON format. For the specific format, please refer to the description of each interface.
+
+**Error**
+
+Errors from the Spot API are returned in the following JSON format：
+
+{<br/>
+&nbsp;&nbsp;"error": error code,<br/>
+&nbsp;&nbsp;"message": "error message"<br/>
+}
+
+*Among them, error indicates the type of error, and message contains the cause of the error or a hint on how to avoid the error. For specific error types, please refer to the [Error](#errors) chapter.*
+
+**Time or Timestamp**
+
+The time values involved in the interface parameters and response data of the Spot API are all UNIX time in milliseconds.
+
+---
+
+## Traffic Restrictions
+
+**Bibox imposes the following access restrictions on requests from the same IP:**
+
+1. Access Limits
+2. Usage Limits CPU usage limit
+
+* Access Limits Access frequency limit
+  1. The same IP has a maximum of 10000 requests every 10 seconds, and requests that exceed the limit will receive a -2101 error.
+  2. The user can send up to 10,000 requests at any frequency within 10 seconds as needed, either roughly every 10ms, or 10,000 consecutive times within 1 second, then wait 9 seconds.
+     <br/>
+     <br/>
+* Usage Limits
+  1. The same IP consumes up to 10,000 CPU points every 10 seconds, and requests that exceed the limit will receive a -2102 error.
+  2. Different APIs consume different CPU time, depending on how the API accesses the data.
+  3. In this article, the way each API interface accesses data will be indicated in the form of "cache" and "database". API that accesses the cache consumes less CPU time, and API that accesses the database consumes more CPU time. Depending on the parameters sent by the user, the API may access the cache and database in a mix, or even access the database multiple times, which will increase the CPU time consumed by the API.
+  4. The CPU time consumed by each API request will be included in the response header Bibox-Usage in the format t1:t2:t3, where t1 represents the CPU time consumed by this API request, and t2 represents the current IP consumption in the last 10 seconds CPU time, t3 represents the remaining available CPU time of the current IP in the last 10 seconds.
+
+---
+
+## Authentication
+
+> Example
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'asset=BTC';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString(); // POST or DELETE  replace queryStr with bodyStr
+const url = `${endpoints}/v4/userdata/accounts?${queryStr}`;
+
+request.get(url,{
+          headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+            'Bibox-Expire-Time':Date.now()+5000 // optional
+          },
+        },
+
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+          console.log(body) // 7.the result
+
+        });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/accounts'
+    query_str = 'asset=BTC'
+    # POST or DELETE replace query_str with body_str
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+**Authentication**
+
+* The private interface is used to access private information such as accounts and delegations, and additional signatures are required when requesting to satisfy Bibox for authentication. This section describes how to create a signature.
+
+**Generate API Key**
+
+* To create a signature, you first need to generate a combination of Api Key and Secret Key. Please keep in mind the Secret Key generated during this process because the value is only displayed once, if you forget the Secret Key, delete the Api Key and generate a new combination of Api Key and Secret Key.
+
+**HTTP Request Header**
+
+**Requests to access private interfaces must append the following HTTP request headers：**
+
+* Bibox-Api-Key Generated Api Key
+* Bibox-Api-Sign Signature,
+
+**The following HTTP request headers can also be appended if desired：**
+
+* Bibox-Expire-Time
+  1. Interface expiration time.
+  2. The value is the Unix time in milliseconds, the server will ignore requests received after this time, mainly to avoid the impact of network delays.
+
+**Create signature**
+
+Before sending the request, first determine the message body for signing. For GET type requests, Query String is the message body that needs to be signed. For POST and DELETE type requests, Body String is the message body that needs to be signed. The specific method of signing is as follows:
+
+* Step 1: Use the Secret Key as the key to execute the HmacSHA256 algorithm on the message body that needs to be signed
+* Step 2: Convert the above result to Hex String
+* Step 3: Use Hex String as the value of the request header Bibox-Api-Sign
+
+## Api Key permission
+
+**Private interfaces require specific permissions to execute. Appropriate permissions can be granted to the Api Key. If the Api Key is not granted the permissions required by an interface, then requests submitted using that Api Key will be rejected.**
+
+**The following permissions can be granted to Api Key：**
+
+* View permission allows Api Key to get private data.
+* Trade permission allows Api Key to submit or revoke orders, and allows Api Key to obtain transaction-related data.
+
+*The permissions required by the interfaces are given in the description of each interface.*
+
+---
+
+# Market Data Endpoints
+
+<!-- ## Object
+
+  ``` javascript
+  // Price Level
+  [
+    "46125.7", // Order price
+    "0.079045" // Order amount
+  ]
+  ```
+
+  ``` javascript
+  // Order Book
+  ...
+  ```
+
+  ``` javascript
+  // Trade
+  [
+    "i": "17122255", // transaction id
+    "p": "46125.7", // transaction price
+    "q": "0.079045", // transaction amount
+    "s": "buy", // Taker's transaction direction
+    "t": "1628738748319" // Transaction time
+  ]
+  ```
+
+  ``` javascript
+  // Candle
+  [
+    "1644224940000", // start time
+    "10190.53", // opening price
+    "10192.5", // highest price
+    "9806.82", // lowest price
+    "10127.37", // closing price
+    "0.834", // transaction amount
+    "8370.40506", // transaction value
+    "1", // first transaction id
+    278 // The total number of transactions in the range
+  ]
+  ```
+
+  ``` javascript
+  // Ticker
+  ...
+  ```
+
+  ``` javascript
+  // Pair
+  {
+    "symbol": "BTC_USDT", // trading pair code
+    "base": "BTC", // underlying asset code
+    "quote": "USDT", // denominated asset code
+    "status": "tradable", // trading pair status
+    "min_price": "100000000", // minimum price
+    "max_price": "0.0001", // maximum price
+    "price_increment": "0.0001", // price increment
+    "price_scale": 4, // price decimal places
+    "min_quantity": "0.0001", // minimum order amount
+    "max_quantity": "1000000", // maximum order amount
+    "quantity_increment": "0.0001", // Increment of order amount
+    "quantity_scale": 4, // order amount decimal places
+    "min_order_value": "10" // minimum order value
+  }
+  ``` -->
+
+## Get Listed Pairs
+
+> Request
+
+```javascript
+let request = require("request");
+const endPoint = 'https://api.bibox.com/api';
+const url = `${endPoint}/v4/marketdata/pairs?symbol=BTC_USDT`
+request.get(url,
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+
+          console.log(body)
+
+        });
+```
+
+```python
+import requests
+
+END_POINT = 'https://api.bibox.com/api';
+
+def do_request():
+    path = '/v4/marketdata/pairs?symbol=BTC_USDT'
+    resp = requests.get(END_POINT + path)
+    print(resp.text)
+  
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "symbol": "BTC_USDT", // trading pair code
+    "base": "BTC", // underlying asset code
+    "quote": "USDT", // denominated asset code
+    "status": "tradable", // trading pair status
+    "min_price": "100000000", // minimum price
+    "max_price": "0.0001", // maximum price
+    "price_increment": "0.0001", // price increment
+    "price_scale": 4, // price decimal places
+    "min_quantity": "0.0001", // minimum order amount
+    "max_quantity": "1000000", // maximum order amount
+    "quantity_increment": "0.0001", // Increment of order amount
+    "quantity_scale": 4, // order amount decimal places
+    "min_order_value": "10" // minimum order value
+  }
+]
+```
+
+**Get a list of currencies**
+
+* Request Method: GET
+* Request Path: /v4/marketdata/pairs
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                  |
+| ---------------- | ---------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| symbol         | string         | No              | Trading pair codes, such as BTC_USDT, ETH_USDT, etc.<br/>Multiple trading pair codes can be specified in the following two forms<br/>1. /pairs?symbol=BTC_USDT,ETH_USDT<br/> 2. /pairs?symbol=BTC_USDT&symbol=ETH_USDT <br/> If the symbol parameter is not specified, the information of all trading pairs will be returned |
+
+* Data source
+
+  Cache
+
+## Get Order Book
+
+> Request
+
+```javascript
+let request = require("request");
+const endPoint = 'https://api.bibox.com/api';
+const url = `${endPoint}/v4/marketdata/order_book?symbol=BTC_USDT`
+request.get(url,
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+
+          console.log(body)
+
+        });
+```
+
+```python
+import requests
+
+END_POINT = 'https://api.bibox.com/api';
+
+def do_request():
+    path = '/v4/marketdata/order_book?symbol=BTC_USDT'
+    resp = requests.get(END_POINT + path)
+    print(resp.text)
+  
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+{
+  "i": "1027024", // update id
+          "t": "1644558642100", // update time
+          "b": [ // buy order
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ],
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ],
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ]
+    ...
+  ],
+          "a": [ // sell order
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ],
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ],
+    [
+      "46125.7", // Order price
+      "0.079045" // Order amount
+    ]
+    ...
+  ]
+}
+```
+
+**Get depth data**
+
+* Request Method: GET
+* Request Path: /v4/marketdata/order_book
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| symbol         | string         | yes             | trading pair code, such as BTC_USDT, ETH_USDT, etc.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| level          | int32          | no              | Specifies the maximum level depth to return<br/>Valid values 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000<br/>Default value 100                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| price_scale    | integer        | No              | Specify the depth of consolidation by price. For example, the price of the specified trading pair has a maximum of 4 decimal places. When price_scale=0, the price returned includes a maximum of 4 decimal places, and when<br/>price_scale=1, the returned price The price contains up to 3 decimal places, and the order quantity is the sum of all orders in the price range of 0.0010<br/> The price returned when price_scale=2 contains up to 2 decimal places, and the order volume is the sum of all orders in the price range of 0.0100<br/> br/>price_scale=3 The returned price contains at most 1 decimal place, and the order quantity is the sum of all orders in the price range of 0.1000.<br/>price_scale=4 The returned price contains at most 0 decimal places, and the order volume is the price range Sum of all orders in 1.0000<br/>Valid values 0, 1, 2, 3, 4, 5<br/>Default value 0 |
+
+> Note: The data is sorted according to the best price, that is, the depth of the buy side is sorted by price from large to small, and the depth of the sell side is sorted by price from small to large
+
+* Data source
+
+  Cache
+
+## Get Candles
+
+> Request
+
+```javascript
+let request = require("request");
+const endPoint = 'https://api.bibox.com/api';
+const url = `${endPoint}/v4/marketdata/candles?symbol=BTC_USDT&time_frame=1m`
+request.get(url,
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+
+          console.log(body)
+
+        });
+```
+
+```python
+import requests
+
+END_POINT = 'https://api.bibox.com/api';
+
+def do_request():
+    path = '/v4/marketdata/candles?symbol=BTC_USDT&time_frame=1m'
+    resp = requests.get(END_POINT + path)
+    print(resp.text)
+  
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  [
+    "1644224940000", // start time
+    "10190.53", // opening price
+    "10192.5", // maximum price
+    "9806.82", // minimum price
+    "10127.37", // closing price
+    "0.834", // transaction volume
+    "8370.40506", // transaction value
+    "1", // first transaction id
+    278 // The total number of transactions in the range
+  ],
+  [
+    "1644224940000", // start time
+    "10190.53", // opening price
+    "10192.5", // maximum price
+    "9806.82", // minimum price
+    "10127.37", // closing price
+    "0.834", // transaction volume
+    "8370.40506", // transaction value
+    "1", // first transaction id
+    278 // The total number of transactions in the range
+  ],
+  [
+    "1644224940000", // start time
+    "10190.53", // opening price
+    "10192.5", // maximum price
+    "9806.82", // minimum price
+    "10127.37", // closing price
+    "0.834", // transaction volume
+    "8370.40506", // transaction value
+    "1", // first transaction id
+    278 // The total number of transactions in the range
+  ]
+  ...
+]
+```
+
+**Get K-line data**
+
+* Request Method: GET
+* Request Path: /v4/marketdata/candles
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                         |
+| ---------------- | ---------------- | ----------------- | ----------------------------------------------------------------------------------------------------- |
+| symbol         | string         | yes             | trading pair code, such as BTC_USDT, ETH_USDT, etc.                                                 |
+| time_frame     | string         | Yes             | K-line data time frame<br/>Valid values 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d, 3d, 1W or 1M |
+| before         | int64          | No              | utc time<br/>limited to return the latest time of the K-line record                                 |
+| after          | int64          | No              | utc time<br/>limited to return the earliest time of the K-line record                               |
+| limit          | integer        | No              | Get the maximum number of K-line records<br/>The default value is 100, the maximum value is 1000    |
+
+* Parameter combinations and data sources supported by this interface
+
+  1. symbol + time_frame  --> cache
+  2. symbol + time_frame + limit  --> cache
+  3. symbol + time_frame + before  --> database
+  4. symbol + time_frame + before + limit  --> database
+  5. symbol + time_frame + after  --> database
+  6. symbol + time_frame + after + limit  --> database
+
+> The returned results are sorted by time from earliest to latest
+
+## Get Trades
+
+> Request
+
+```javascript
+let request = require("request");
+const endPoint = 'https://api.bibox.com/api';
+const url = `${endPoint}/v4/marketdata/trades?symbol=BTC_USDT`
+request.get(url,
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+
+          console.log(body)
+
+        });
+```
+
+```python
+import requests
+
+END_POINT = 'https://api.bibox.com/api';
+
+def do_request():
+    path = '/v4/marketdata/trades?symbol=BTC_USDT'
+    resp = requests.get(END_POINT + path)
+    print(resp.text)
+  
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "i": "17122255", // transaction id
+    "p": "46125.7", // transaction price
+    "q": "0.079045", // transaction amount
+    "s": "buy", // Taker's transaction direction
+    "t": "1628738748319" // transaction time
+  },
+  {
+    "i": "17122255", // transaction id
+    "p": "46125.7", // transaction price
+    "q": "0.079045", // transaction amount
+    "s": "buy", // Taker's transaction direction
+    "t": "1628738748319" // transaction time
+  },
+  {
+    "i": "17122255", //  transaction id
+    "p": "46125.7", //  transaction price
+    "q": "0.079045", // transaction amount
+    "s": "buy", // Taker's transaction direction
+    "t": "1628738748319" // transaction time
+  }
+  ...
+]
+```
+
+**Get transaction history**
+
+* Request Method: GET
+* Request Path: /v4/marketdata/trades
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description |
+| ---------------- | ---------------- | ----------------- | ------------- |
+
+| symbol | string | yes | trading pair code, such as BTC_USDT, ETH_USDT, etc. |
+| start_time | int64 | no | limited to return the earliest time of transaction records |
+| end_time | int64 | no | limited to return the latest time of transaction records |
+| before | int64 | no | transaction id<br/>limited to return the maximum id of transaction records |
+| after | int64 | no | transaction id<br/>limited to return the maximum id of transaction records |
+| limit      | integer  | no       | Get the maximum number of trade records<br/>The default value is 100, the maximum value is 1000  |
+
+* Parameter combinations and data sources supported by this interface
+
+  1. symbol  --> cache
+  2. symbol + limit  --> cache
+  3. symbol + start_time  --> database
+  4. symbol + start_time + limit  --> database
+  5. symbol + end_time  --> database
+  6. symbol + end_time + limit  --> database
+  7. symbol + start_time + end_time  --> database
+  8. symbol + start_time + end_time + limit  --> database
+  9. symbol + before  --> database
+  10. symbol + before + limit  --> database
+  11. symbol + after  --> database
+  12. symbol + after + limit  --> database
+
+  *The parameter combination whose data source is cache is used to get the last 1000 transaction records*
+
+  *The parameter combination whose data source is database is used to obtain earlier transaction records*
+
+  *If the latest transaction record is obtained with the parameter combination whose data source is database, the result will be slightly delayed than the cache data source*
+* Usage
+  **Usage example: Get all transaction records of a trading pair within three months**
+
+  1. First use the symbol + limit parameter combination to get the latest transaction record
+  2. Use the tradeId of the first record obtained as the value of the before parameter, and repeatedly use the symbol + before + limit parameter combination to obtain more records, until all transaction records within three months are obtained and then stop
+
+> The returned results are sorted by transaction record id from small to large
+
+## Get Tickers
+
+> Request
+
+```javascript
+let request = require("request");
+const endPoint = 'https://api.bibox.com/api';
+const url = `${endPoint}/v4/marketdata/ticker?symbol=BTC_USDT`
+request.get(url,
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+
+          console.log(body)
+
+        });
+```
+
+```python
+import requests
+
+END_POINT = 'https://api.bibox.com/api';
+
+def do_request():
+    path = '/v4/marketdata/ticker?symbol=BTC_USDT'
+    resp = requests.get(END_POINT + path)
+    print(resp.text)
+  
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "s": "BTC_USDT",  // trading pair code
+    "o": "99.00000000",  // opening price
+    "h": "100.00000000",  // highest price
+    "l": "0.10000000",  // lowest price
+    "p": "4.00000200",  // latest price
+    "q": "0.002",  // latest volume
+    "v": "8913.30000000",  // 24 hour volume
+    "a": "15.30000000",  // 24 hour transaction value
+    "c": "-94.99999800",  // 24 hour Change
+    "t": 123456,  // 24 hour transaction count
+    "f": 1234,  // 24 hour first transaction id
+    "bp":9959.87,  // Best current bid price
+    "bq":0.007,  // Best current bid quantity
+    "ap":10022.77,  // Best current ask price
+    "aq":0.006  // Best current ask quantity
+  }
+]
+```
+
+**Get quote data**
+
+* Request Method: GET
+* Request Path: /v4/marketdata/ticker
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                             |
+| ---------------- | ---------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| symbol         | string         | Yes             | Trading pair code, such as BTC_USDT, ETH_USDT, etc.<br/>Multiple trading pair codes can be specified in the following two forms<br/> 1. /pairs?symbol=BTC_USDT,ETH_USDT<br/ > 2. /pairs?symbol=BTC_USDT&symbol=ETH_USDT |
+
+* Data Source
+
+Cache
+
+# Market Data Streams
+
+## Overview
+
+> Example
+
+```javascript
+const WebSocket = require('ws');
+const biboxws = 'wss://market-wss.bibox360.com';
+
+let wsClass = function () {
+};
+
+wsClass.prototype._initWs = async function () {
+    let that = this;
+    console.log(biboxws)
+    let ws = new WebSocket(biboxws);
+    that.ws = ws;
+
+    ws.on('open', function open() {
+        console.log(new Date(), 'open')
+        ws.send(JSON.stringify({
+            "id": 123,
+            "method": "SUBSCRIBE",
+            "params": [
+                "BTC_USDT.order_book.20",
+            ]
+        }));
+        setInterval(function () {
+          ws.ping(Date.now())
+        },30000)
+    });
+
+    ws.on('close', data => {
+        console.log('close, ', data);
+    });
+
+    ws.on('error', data => {
+        console.log('error', data);
+    });
+
+    ws.on('ping', data => {
+        console.log('ping ', data.toString('utf8'));
+    });
+
+    ws.on('pong', data => {
+        console.log('pong ', data.toString('utf8'));
+    });
+
+    ws.on('message', data => {
+        console.log("rece message")
+        console.log(data)
+    });
+};
+
+let instance = new wsClass();
+
+instance._initWs().catch(err => {
+    console.log(err);
+});
+
+```
+
+```python
+import websocket
+import json
+
+ws_url = 'wss://market-wss.bibox360.com'
+
+def stringify(obj):
+    return json.dumps(obj, sort_keys=True).replace("\'", "\"").replace(" ", "")
+
+
+def get_sub_str():
+    subdata = {
+        "id": 123,
+        "method": "SUBSCRIBE",
+        "params": [
+            "BTC_USDT.order_book.20",
+        ]
+    }
+    return stringify(subdata)
+
+
+def on_message(ws, message):
+    print(message)
+
+
+def on_error(ws, error):
+    print(error)
+
+
+def on_close(ws):
+    print("### closed ###")
+
+
+def on_open(ws):
+    ws.send(get_sub_str())
+
+def connect():
+    # websocket.enableTrace(True)
+    ws = websocket.WebSocketApp(ws_url,
+                                on_message=on_message,
+                                on_error=on_error,
+                                on_close=on_close)
+    ws.on_open = on_open
+    ws.run_forever(ping_interval=30, ping_timeout=5)
+
+
+if __name__ == "__main__":
+    connect()
+
+```
+
+**The market information can be obtained in time by using the Websocket push service.**
+
+* Connect to Websocket server
+  Please use the following URL to connect to the Websocket server:
+  <br/>
+  wss://market-wss.bibox360.com
+
+> After connecting, the client can send the following JSON-formatted request to the server
+
+```javascript
+{
+  "id": 123, // The request id given by the client
+  "method": "..." // request type
+  "params": [ // request parameter list
+    "...",
+    "...",
+    ...
+  ]
+}
+```
+
+> After receiving the request, the server will send the following JSON response to the client
+
+```javascript
+{
+  "id": 123, // request id
+  "result": "..." // request result
+}
+```
+
+> If an error occurs, the server will send the following error message to the client
+
+```javascript
+{
+  "id": 123, // request id
+  "error": -1000, // error code
+  "message": "..." // error description
+}
+```
+
+> At the same time, the server will also send the following data stream in JSON format to the client, the data stream contains the change information of market conditions
+
+```javascript
+{
+  "stream": "BTC_USDT.trades", // data stream name
+  "data": ..., // data
+}
+```
+
+> Request: Subscribe to a data stream
+
+```javascript
+{
+  "id": 1,
+  "method": "SUBSCRIBE"
+  "params": [
+    "stream name",
+    "stream name",
+    ...
+  ]
+}
+```
+
+> After connecting, please send the request to the server first, and then the server will send the corresponding data stream to the client when the market price changes.
+
+> "data stream name" is the data stream name, which is a string in the following format.
+> symbol.data_type.param1.param2...
+
+> Among them, symbol is the name of the trading pair, such as BTC_USDT, ETH_USDT, etc.
+> data_type is the data type, currently only the following data types are supported
+> order_book: depth
+> trades: list of trades
+> candles: candlesticks
+> ticker: latest transaction information
+
+> After data_type is the parameter list. Different data types have different parameter lists. These will be introduced later.
+
+> Request: Unsubscribe to a data stream
+
+```javascript
+{
+  "id": 1,
+  "method": "UNSUBSCRIBE",
+  "params": [
+    "data stream name",
+    "data stream name",
+    ...
+  ]
+}
+```
+
+> If the request is handled correctly by the server, the client receives the following response:
+
+```javascript
+...
+```
+
+> If an error occurs in the request, the client receives the following error response:
+
+```javascript
+...
+```
+
+## Request Methods
+
+> Request type and parameters
+
+> The client can send the following request to the server
+
+```javascript
+{
+  "id": 123, // request id given by client
+  "method": "..." // request type
+  "params": [ // request parameter list
+    "...",
+    "...",
+    ...
+  ]
+}
+```
+
+* The value of the method field is one of the following request types:
+
+
+| optional value | description                                                                                                                                                                                                   |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SUBSCRIBE      | 1. Subscribe to the data stream<br/> 2. The parameter is a list of data stream names <br/> 3. After successful subscription, the server will send the data stream to the client when the market price changes |
+| UNSUBSCRIBE    | 1. Unsubscribe data stream<br/> 2. The parameter is a list of data stream names <br/> 3. After successfully unsubscribing, the client will no longer receive the corresponding data stream                    |
+
+## Subscribe Order Book
+
+**Subscribe to depth information***
+
+> Send the following request to subscribe to depth information
+
+```javascript
+{
+  "id": 123,
+  "method": "SUBSCRIBE"
+  "params": [
+    "BTC_USDT.order_book.20",
+    "ETH_USDT.order_book.20",
+    ...
+  ]
+}
+```
+
+* parameter
+
+  1. The parameter of the request is the depth stream name, in the following format:
+
+  * \<symbol>.order_book.\<max depth>
+    1. \<symbol> is the name of the trading pair, such as BTC_USDT, ETH_USDT, etc.
+    2. \<max depth> is the maximum depth, valid values are 5, 10, 20, 50, 100, 200, 500, 1000
+
+  > data flow
+  >
+
+  ```javascript
+  {
+    "stream": "BTC_USDT.order_book.20",
+    "data": {
+      "i": "1027024", // update id
+      "t": "1644558642100", // update time
+      "b": [ // bid
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+        ...
+      ],
+      "a": [ // ask
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+        [
+            "46125.7", // Order price
+            "0.079045" // Order amount
+          ],
+       ...
+      ]
+    }
+  }
+  ```
+
+  > After a successful subscription, the client will first receive a full-depth data stream, and then will receive an incremental change data stream. Please use the following methods to synthesize a full-depth data stream, or use the SDK.
+  >
+
+  ```javascript
+  ...
+  ```
+
+## Subscribe Trades
+
+**Subscribe to transaction list**
+
+> Send the following request to subscribe to the transaction list
+
+```javascript
+{
+  "id": 123,
+  "method": "SUBSCRIBE"
+  "params": [
+    "BTC_USDT.trades",
+    "ETH_USDT.trades",
+    ...
+  ]
+}
+```
+
+* parameter
+
+  1. The parameter of the request is the name of the transaction flow, in the following format:
+
+  * \<symbol>.trades
+    1. \<symbol> is the name of the trading pair, such as BTC_USDT, ETH_USDT, etc.
+
+> Data flow
+
+```javascript
+{
+  "stream": "BTC_USDT.trades",
+  "data": [
+    {
+     "i": "17122255", // transaction id
+      "p": "46125.7", // transaction price
+      "q": "0.079045", // transaction volume
+      "s": "buy", // Taker's transaction direction
+      "t": "1628738748319" // transaction time
+    },
+    {
+      "i": "17122255", // transaction id
+      "p": "46125.7", // transaction price
+      "q": "0.079045", // transaction volume
+      "s": "buy", // Taker's transaction direction
+      "t": "1628738748319" // transaction time
+    },
+    {
+      "i": "17122255", // transaction id
+      "p": "46125.7", // transaction price
+      "q": "0.079045", // transaction volume
+      "s": "buy", // Taker's transaction direction
+      "t": "1628738748319" // transaction time
+    },
+    ...
+  ]
+}
+```
+
+## Subscribe Candles
+
+**Subscribe to candles**
+
+> Send the following request to subscribe to the candles
+
+```javascript
+{
+  "id": 123,
+  "method": "SUBSCRIBE"
+  "params": [
+    "BTC_USDT.candles.1m",
+    "ETH_USDT.candles.1h",
+    ...
+  ]
+}
+```
+
+* parameter
+
+  1. The candles flow name format is as follows:
+
+  * \<symbol>.candles.\<time_frame>
+    1. \<symbol> is the name of the trading pair, such as BTC_USDT, ETH_USDT, etc.
+    2. \<time_frame> is the candles period, the valid values are 1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d, 1w, 1M
+
+> Data flow
+
+```javascript
+{
+  "stream": "BTC_USDT.candles.1m",
+  "data": [
+    [
+      "1644224940000", // start time
+      "10190.53", // opening price
+      "10192.5", // maximum price
+      "9806.82", // minimum price
+      "10127.37", // closing price
+      "0.834", // transaction volume
+      "8370.40506", // transaction value
+      "1", // first transaction id
+      278 // The total number of transactions in the range
+    ],
+    [
+      "1644224940000", // start time
+      "10190.53", // opening price
+      "10192.5", // maximum price
+      "9806.82", // minimum price
+      "10127.37", // closing price
+      "0.834", // transaction volume
+      "8370.40506", // transaction value
+      "1", // first transaction id
+      278 // The total number of transactions in the range
+    ],
+    [
+      "1644224940000", // start time
+      "10190.53", // opening price
+      "10192.5", // maximum price
+      "9806.82", // minimum price
+      "10127.37", // closing price
+      "0.834", // transaction volume
+      "8370.40506", // transaction value
+      "1", // first transaction id
+      278 // The total number of transactions in the range
+    ],
+    ...
+  ]
+}
+```
+
+## Subscribe Tickers
+
+...
+
+---
+
+# User Data Endpoints
+
+<!-- ## Object
+
+> Account
+
+```javascript
+{
+  "s":"USDT",  // asset code
+  "a":10000,  // Available amount
+  "h":0  // frozen amount
+}
+```
+
+> Ledger Entry
+
+```javascript
+{
+  "i":1125899906842648350,  // entry id
+  "s":"BTC",  // asset symbol
+  "T":"trade",  // entry type
+  "a":0.003,  // amount
+  "b":10.009,  // balance
+  "t":1643289492985  // time
+}
+```
+
+> Entry Type: transfer, trade, fee
+
+> Order
+
+> Order object
+> Up to 20 transactions of the order
+> If the order has more than 20 transactions, the object only contains the last 20 transactions, and other transactions can be obtained through the fills interface
+
+```javascript
+{
+  "i": 4611688217450643477,  // The order id assigned by the exchange
+  "I": "",  // User specified order id
+  "m": "BTC_USDT",  // trading pair code
+  "T": "limit",  // order type
+  "s": "sell",  // order direction
+  "Q": -0.0100,  // order amount
+  "P": 10043.8500,  // Order price
+  "t": "gtc",  // Time In Force
+  "o": false,  // Post Only
+  "S": "filled",  // Order status
+  "E": -0.0100,  // transaction volume
+  "e": -100.43850000,  // transaction value
+  "C": 1643193746043,  // creation time
+  "U": 1643193746464,  // update time
+  "n": 2,  // Number of transactions
+  "F": [{
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // Transaction time
+    "p": 10043.85,  // Transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  }, {
+    "i": 12,
+    "t": 1643193746266,
+    "p": 10043.85,
+    "q": -0.001,
+    "l": "maker",
+    "f": {
+      "a": "USDT",
+      "m": 0.01004385000
+    }
+  }],
+  "f": [{
+    "a": "USDT",  // Assets used to pay fees
+    "m": 0.10043850000  // Total handling fee
+  }]
+}
+```
+
+> Fill
+
+```javascript
+{
+  "i": 13,  // transaction id
+  "t": 1643193746464,  // Transaction time
+  "p": 10043.85,  // transaction price
+  "q": -0.009,  // transaction volume
+  "l": "maker",  // Maker / Taker transaction 
+  "f": {
+    "a": "USDT",  // The asset used for the transaction to pay the handling fee
+    "m": 0.09039465000  // The transaction fee
+  }
+}
+``` -->
+
+## Get Accounts
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'asset=BTC';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString();
+const url = `${endpoints}/v4/userdata/accounts?${queryStr}`;
+
+request.get(url,{
+          headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+            'Bibox-Expire-Time':Date.now()+5000 // optional
+          },
+        },
+
+        function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            return console.error('upload failed:', err);
+          }
+          console.log(body) // 7.the result
+
+        });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/accounts'
+    query_str = 'asset=BTC'
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "s":"USDT",  // asset code
+    "a":10000,  // Available amount
+    "h":0  // frozen amount
+  },
+    {
+    "s":"BTC",  // asset code
+    "a":10000,  // Available amount
+    "h":0  // frozen amount
+  },
+    {
+    "s":"ETH",  // asset code
+    "a":10000,  // Available amount
+    "h":0  // frozen amount
+  }
+  ...
+]
+```
+
+**Get the balance, freezing and other information of various assets in the account corresponding to the API Key**
+
+* Request Method: GET
+* Request Path: /v4/userdata/accounts
+* Permission: View, Trade
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                      |
+| ---------------- | ---------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| asset          | string         | No              | Asset code, such as BTC, ETH, etc.<br/>Multiple asset codes can be specified in the following two forms<br/>1. /v4/userdata/accounts?asset=BTC,ETH<br/> 2. /v4/userdata/accounts?asset=BTC&asset=ETH <br/> If the asset parameter is not specified, it will return the information of all assets |
+
+* Data Source
+
+  Cache
+
+## Get an account's ledger
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'asset=BTC&end_time=1651895799668&limit=10';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString();
+const url = `${endpoints}/v4/userdata/ledger?${queryStr}`;
+
+request.get(url,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/ledger'
+    query_str = 'asset=BTC&end_time=1651895799668&limit=10'
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "i":1125899906842648350,  // entry id
+    "s":"BTC",  // asset symbol
+    "T":"trade",  // entry type: transfer, trade, fee
+    "a":0.003,  // amount
+    "b":10.009,  // balance
+    "t":1643289492985  // time
+  },
+  {
+    "i":1125899906842648350,  // entry id
+    "s":"USDT",  // asset symbol
+    "T":"trade",  // entry type: transfer, trade, fee
+    "a":0.003,  // amount
+    "b":10.009,  // balance
+    "t":1643289492985  // time
+  },
+  {
+    "i":1125899906842648350,  // entry id
+    "s":"ETH",  // asset symbol
+    "T":"trade",  // entry type: transfer, trade, fee
+    "a":0.003,  // amount
+    "b":10.009,  // balance
+    "t":1643289492985  // time
+  }
+  ...
+]
+```
+
+**Get the bill of the account corresponding to the API Key, including all records of changing the account balance, such as fund transfer, transaction, handling fee collection, etc.**
+
+* Request Method: GET
+* Request Path: /v4/userdata/ledger
+* Permission: View, Trade
+* Request Parameters (should be sorted)
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                   |
+| ---------------- | ---------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| asset          | string         | No              | Asset code, such as BTC, ETH, etc.<br/>Multiple asset codes can be specified in the following two forms<br/>1. /v4/userdata/ledger?asset=BTC,ETH<br/> 2. /v4/userdata/ledger?asset=BTC&asset=ETH <br/> If the asset parameter is not specified, it will return the bill records of all assets |
+| start_time     | int64          | No              | Limited to return the earliest time of the bill records                                                                                                                                                                                                                                       |
+| end_time       | int64          | no              | Limited to return the latest time of the bill records                                                                                                                                                                                                                                         |
+| before         | int64          | No              | Bill record id<br/>Limited to return the maximum id value of the bill records                                                                                                                                                                                                                 |
+| after          | int64          | No              | Bill record id<br/>Limited to return the minimum id value of the bill records                                                                                                                                                                                                                 |
+| limit          | int32          | No              | Limited to return the maximum number of the bill records<br/>default 100                                                                                                                                                                                                                      |
+| start_time     | int64          | No              | Limited to return the earliest time of the bill records                                                                                                                                                                                                                                       |
+| start_time     | int64          | No              | Limited to return the earliest time of the bill records                                                                                                                                                                                                                                       |
+
+* Data Source
+
+  DB
+
+## Create an order
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+const param = {
+    symbol:'BTC_USDT',
+    side:'sell',
+    type:'limit',
+    quantity:'0.0001',
+    price:'50000'
+}
+
+let bodyStr = JSON.stringify(param);
+const sign = CryptoJS.HmacSHA256(bodyStr, secret).toString();
+const url = `${endpoints}/v4/userdata/order`;
+
+request.post({
+        url:url,
+        body:param,
+        json:true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+            'Bibox-Expire-Time':Date.now()+5000  // optional
+
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+
+```
+
+```python
+import hashlib
+import hmac
+import requests
+import json
+import time
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+t = time.time()
+
+def do_request():
+
+    param = {
+        'symbol': 'BTC_USDT',
+        'side': 'sell',
+        'type': 'limit',
+        'quantity': '0.0001',
+        'price': '50000'
+    }
+    body_str = json.dumps(param)
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), body_str.encode("utf-8"), hashlib.sha256).hexdigest()
+    path = '/v4/userdata/order'
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+        'Bibox-Expire-Time':str(round(t * 1000 +5000)) # optional
+    }
+    resp = requests.post(END_POINT + path, json=param, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+{
+  "i": 4611688217450643477,  // The order id assigned by the exchange
+  "I": "",  // User specified order id
+  "m": "BTC_USDT",  // trading pair code
+  "T": "limit",  // order type
+  "s": "sell",  // order direction
+  "Q": -0.0100,  // order amount
+  "P": 10043.8500,  // order price
+  "t": "gtc",  // Time In Force
+  "o": false,  // Post Only
+  "S": "filled",  // order status
+  "E": -0.0100,  // transaction volume
+  "e": -100.43850000,  // transaction value
+  "C": 1643193746043,  // creation time
+  "U": 1643193746464,  // update time
+  "n": 2,  // Number of transactions
+  "F": [{
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // Transaction time
+    "p": 10043.85,  // transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  }, {
+    "i": 12,
+    "t": 1643193746266,
+    "p": 10043.85,
+    "q": -0.001,
+    "l": "maker",
+    "f": {
+      "a": "USDT",
+      "m": 0.01004385000
+    }
+  }],
+  "f": [{
+    "a": "USDT",  // Assets used to pay fees
+    "m": 0.10043850000  // Total handling fee
+  }]
+}
+```
+
+**Submit an order**
+
+* Request Method: POST
+* Request Path: /v4/userdata/order
+* Permission: Trade
+* Request Parameters
+
+
+| Parameter name  | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                                             |
+| ----------------- | ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| symbol          | string         | yes             | trading pair code, such as BTC_USDT, ETH_USDT, etc.                                                                                                                                                                                                                                                                                                     |
+| side            | string         | yes             | order direction, valid value buy, sell, case insensitive                                                                                                                                                                                                                                                                                                |
+| type            | string         | yes             | order type, valid value limit                                                                                                                                                                                                                                                                                                                           |
+| client_order_id | string         | No              | Order id, a string with a valid value of an int64 integer, it is recommended to use the Unix timestamp when the order was submitted                                                                                                                                                                                                                     |
+| quantity        | decimal        | No              | Order Quantity                                                                                                                                                                                                                                                                                                                                          |
+| price           | decimal        | No              | Order Limit                                                                                                                                                                                                                                                                                                                                             |
+| time_in_force   | string         | No              | Order Timeliness<br/>Valid value gtc, ioc<br/>gtc means that the order that is not fully filled will remain valid until the user cancels the order<br/>ioc means that the order matching will immediately cancel the order that cannot be fully filled at the time of placing the order,<br/>Any transaction will be retained<br/>The default value gtc |
+| post_only       | bool           | no              | ...                                                                                                                                                                                                                                                                                                                                                     |
+
+> Order object
+> Up to 20 transactions of the order
+> If the order has more than 20 transactions, the object only contains the last 20 transactions, and other transactions can be obtained through the fills interface
+
+## Get an order
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'id=1118621391231';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString();
+const url = `${endpoints}/v4/userdata/order?${queryStr}`;
+
+request.get(url,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/order'
+    query_str = 'id=14118828812271651'
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+{
+  "i": 4611688217450643477,  // The order id assigned by the exchange
+  "I": "",  // User specified order id
+  "m": "BTC_USDT",  // trading pair code
+  "T": "limit",  // order type
+  "s": "sell",  // order direction
+  "Q": -0.0100,  // order amount
+  "P": 10043.8500,  // order price
+  "t": "gtc",  // Time In Force
+  "o": false,  // Post Only
+  "S": "filled",  // order status
+  "E": -0.0100,  // transaction volume
+  "e": -100.43850000,  // transaction value
+  "C": 1643193746043,  // creation time
+  "U": 1643193746464,  // update time
+  "n": 2,  // Number of transactions
+  "F": [{
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // Transaction time
+    "p": 10043.85,  // transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  }, {
+    "i": 12,
+    "t": 1643193746266,
+    "p": 10043.85,
+    "q": -0.001,
+    "l": "maker",
+    "f": {
+      "a": "USDT",
+      "m": 0.01004385000
+    }
+  }],
+  "f": [{
+    "a": "USDT",  // Assets used to pay fees
+    "m": 0.10043850000  // Total handling fee
+  }]
+}
+```
+
+**Get the order with the specified id**
+
+* Request Method: GET
+* Request Path: /v4/userdata/order
+* Permission: View, Trade
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ---------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id             | string         | yes             | order id<br/>The order id can be assigned by the exchange, or <br/>can be defined by the user (use the client_order_id parameter when submitting the order).<br/>When using a custom id, you need to add the "c:" prefix before the id.<br/>For example: when submitting an order, a custom id "123" is used, and when obtaining an order you need to use "c:123". |
+
+## Get Orders
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'limit=2&status=settled&symbol=BTC_USDT';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString();
+const url = `${endpoints}/v4/userdata/orders?${queryStr}`;
+
+request.get(url,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/orders'
+    query_str = 'limit=2&status=settled&symbol=BTC_USDT'
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "i": 4611688217450643477, // The order id assigned by the exchange
+    "I": "", // User specified order id
+    "m": "BTC_USDT", // trading pair code
+    "T": "limit", // order type
+    "s": "sell", // order direction
+    "Q": -0.0100, // Order amount
+    "P": 10043.8500, // order price
+    "t": "gtc", // Time In Force
+    "o": false, // Post Only
+    "S": "filled", // order status
+    "E": -0.0100, // transaction volume 
+    "e": -100.43850000, // transaction value
+    "C": 1643193746043, // creation time
+    "U": 1643193746464, // update time
+    "n": 2, // number of transactions
+    "F": [{
+      "i": 13, // transaction id
+      "t": 1643193746464, // transaction time
+      "p": 10043.85, // transaction price
+      "q": -0.009, // transaction volume
+      "l": "maker", // Maker / Taker transaction 
+      "f": {
+        "a": "USDT", // This transaction is used to pay the transaction fee
+        "m": 0.09039465000 // The handling fee for this transaction
+      }
+    }, {
+      "i": 12,
+      "t": 1643193746266,
+      "p": 10043.85,
+      "q": -0.001,
+      "l": "maker",
+      "f": {
+        "a": "USDT",
+        "m": 0.01004385000
+      }
+    }],
+    "f": [{
+      "a": "USDT",  // Assets used to pay fees
+      "m": 0.10043850000  // Total handling fee
+    }]
+  }
+  ...
+]
+```
+
+**Obtain the order that meets the following conditions in the account corresponding to ApiKey**
+
+1. All unsettled orders
+2. Settled orders within three months, including rejected, cancelled and filled orders
+3. All completed orders
+4. All cancelled partial transaction orders
+
+* Request Method: GET
+* Request Path: /v4/userdata/orders
+* Permission: View, Trade
+* Request Parameters (should be sorted)
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | ---------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status         | string         | No              | Valid values unsettled, settled<br/>unsettled means get unsettled orders, the returned results are sorted in reverse order by order creation time<br/>settled means settled orders are acquired, and the returned results are sorted in reverse order by order settlement time <br/>Default unsettled                                                                                                                 |
+| symbol         | string         | No              | Trading pair code, such as BTC_USDT, ETH_USDT, etc.<br/>When status=unsettled, if symbol is not specified, it will return unsettled orders for all trading pairs<br/>When status=settled, symbol parameters must be given |
+| start_time     | long           | no              | limited to return the last creation time of the order                                                                                                                                                                                                                                                                                                                                                                 |
+| end_time       | long           | no              | limited to return the last creation time of the order                                                                                                                                                                                                                                                                                                                                                                 |
+| before         | int64          | no              | order update id<br/>limited to return the maximum update id of the order                                                                                                                                                                                                                                                                                                                                              |
+| after          | int64          | no              | delegate update id<br/>limited to return the minimum update id of the order                                                                                                                                                                                                                                                                                                                                           |
+| limit          | long           | No              | Specify the maximum number of orders to return                                                                                                                                                                                                                                                                                                                                                                        |
+
+* Parameter combinations and data sources supported by this interface
+
+  * status=unsettled + symbol
+  * status=settled + symbol + start_time
+  * status=settled + symbol + start_time + limit
+  * status=settled + symbol + end_time
+  * status=settled + symbol + end_time + limit
+  * status=settled + symbol + start_time + end_time
+  * status=settled + symbol + start_time + end_time + limit
+  * status=settled + symbol + before
+  * status=settled + symbol + before + limit
+  * status=settled + symbol + after
+  * status=settled + symbol + after + limit
+
+> The returned unsettled orders are sorted by creation time from earliest to latest
+> The returned settled orders are sorted by settlement time from earliest to latest
+
+## Cancel an Order
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+const param = {
+    id:'14244173146202090'
+}
+
+let bodyStr = JSON.stringify(param);
+const sign = CryptoJS.HmacSHA256(bodyStr, secret).toString();
+const url = `${endpoints}/v4/userdata/order`;
+
+request.delete({
+        url:url,
+        body:param,
+        json:true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+            'Bibox-Expire-Time':Date.now()+5000 // optional
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+import json
+import time
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+t = time.time()
+
+def do_request():
+
+    param = {
+        'id': '14245272657638034'
+    }
+    body_str = json.dumps(param)
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), body_str.encode("utf-8"), hashlib.sha256).hexdigest()
+    path = '/v4/userdata/order'
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+        'Bibox-Expire-Time':str(round(t * 1000 +5000)) #optional
+    }
+    resp = requests.delete(END_POINT + path, json=param, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+{
+  "i": 4611688217450643477, // The order id assigned by the exchange
+  "I": "", // User specified order id
+  "m": "BTC_USDT", // trading pair code
+  "T": "limit", // order type
+  "s": "sell", // order direction
+  "Q": -0.0100, // Order amount
+  "P": 10043.8500, // order price
+  "t": "gtc", // Time In Force
+  "o": false, // Post Only
+  "S": "filled", // order status
+  "E": -0.0100, // transaction volume 
+  "e": -100.43850000, // transaction value
+  "C": 1643193746043, // creation time
+  "U": 1643193746464, // update time
+  "n": 2, // number of transactions
+  "F": [{
+    "i": 13, // deal id
+    "t": 1643193746464, // transaction time
+    "p": 10043.85, // transaction price
+    "q": -0.009, // transaction volume
+    "l": "maker", // Maker / Taker transaction 
+    "f": {
+      "a": "USDT", // This transaction is used to pay the transaction fee
+      "m": 0.09039465000 // The handling fee for this transaction
+    }
+  }, {
+    "i": 12,
+    "t": 1643193746266,
+    "p": 10043.85,
+    "q": -0.001,
+    "l": "maker",
+    "f": {
+      "a": "USDT",
+      "m": 0.01004385000
+    }
+  }],
+  "f": [{
+    "a": "USDT",  // Assets used to pay fees
+    "m": 0.10043850000  // Total handling fee
+  }]
+}
+```
+
+**Revoke the order with the specified id**
+
+* Request Method: DELETE
+* Request Path: /v4/userdata/order
+* Permission: Trade
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                                                                                                                                                                       |
+| ---------------- | ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id             | string         | yes             | order id<br>The order id can be assigned by the exchange,<br/>or user-defined (use the client_order_id parameter when submitting the order). <br>When using a custom id, you need to add a "c:" prefix before the id. <br/>For example: the custom id "123" is used when submitting the order, and "c:123" must be used when canceling the order. |
+
+> If the order with the specified id has been settled, or if there is no order with the specified id, you will receive a -3004 error.
+
+## Cancel all Orders
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+const param = {
+    symbol:'BTC_USDT'
+}
+
+let bodyStr = JSON.stringify(param);
+const sign = CryptoJS.HmacSHA256(bodyStr, secret).toString();
+const url = `${endpoints}/v4/userdata/orders`;
+
+request.delete({
+        url:url,
+        body:param,
+        json:true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+            'Bibox-Expire-Time':Date.now()+5000 // optional
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+import json
+import time
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+t = time.time()
+
+def do_request():
+
+    param = {
+        'symbol': 'BTC_USDT'
+    }
+    body_str = json.dumps(param)
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), body_str.encode("utf-8"), hashlib.sha256).hexdigest()
+    path = '/v4/userdata/orders'
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+        'Bibox-Expire-Time':str(round(t * 1000 +5000)) # optional
+    }
+    resp = requests.delete(END_POINT + path, json=param, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[]
+```
+
+**Cancel all orders**
+
+* Request Method: DELETE
+* Request Path: /v4/userdata/orders
+* Permission: Trade
+* Request Parameters
+
+
+| Parameter name | Parameter type | Required or not | Description                                            |
+| ---------------- | ---------------- | ----------------- | -------------------------------------------------------- |
+| symbol         | string         | yes             | trading pair code<br/>such as BTC_USDT, ETH_USDT, etc. |
+
+> Returns an empty array if the request was executed correctly, otherwise returns an error message
+
+## Get fills
+
+> Request
+
+```javascript
+let CryptoJS = require("crypto-js");
+let request = require("request");
+
+const endpoints = 'https://api.bibox.com/api'
+const apikey = "9e03e8fda27b6e4fc6b29bb244747dcf64092996"; // your apikey
+const secret = "b825a03636ca09c884ca11d71cfc4217a98cb8bf"; // your secret
+
+
+const queryStr = 'limit=2&symbol=BTC_USDT';
+const sign = CryptoJS.HmacSHA256(queryStr, secret).toString();
+const url = `${endpoints}/v4/userdata/fills?${queryStr}`;
+
+request.get(url,{
+        headers: {
+            'Content-Type': 'application/json',
+            'Bibox-Api-Key': apikey,
+            'Bibox-Api-Sign': sign,
+        },
+    },
+
+    function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return console.error('upload failed:', err);
+        }
+        console.log(body) // 7.the result
+
+    });
+```
+
+```python
+import hashlib
+import hmac
+import requests
+
+END_POINT = 'https://api.bibox.com/api'
+API_KEY = '9e03e8fda27b6e4fc6b29bb244747dcf64092996'
+SECRET_KEY = 'b825a03636ca09c884ca11d71cfc4217a98cb8bf'
+
+
+def do_request():
+    path = '/v4/userdata/fills'
+    query_str = 'limit=2&symbol=BTC_USDT'
+    # POST or DELETE replace query_str with body_str
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), query_str.encode("utf-8"), hashlib.sha256).hexdigest()
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Bibox-Api-Key': API_KEY,
+        'Bibox-Api-Sign': sign,
+    }
+    resp = requests.get(END_POINT + path, query_str, headers=headers)
+    print(resp.text)
+
+
+if __name__ == '__main__':
+    do_request()
+```
+
+> Response
+
+```json
+[
+  {
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // transaction time
+    "p": 10043.85,  // transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  },
+    {
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // transaction time
+    "p": 10043.85,  // transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  },
+    {
+    "i": 13,  // transaction id
+    "t": 1643193746464,  // transaction time
+    "p": 10043.85,  // transaction price
+    "q": -0.009,  // transaction volume
+    "l": "maker",  // Maker / Taker transaction 
+    "f": {
+      "a": "USDT",  // The asset used for the transaction to pay the handling fee
+      "m": 0.09039465000  // The transaction fee
+    }
+  },
+  ...
+]
+```
+
+**Get transaction records**
+
+* Request Method: GET
+* Request Path: /v4/userdata/fills
+* Permission: View, Trade
+* Request Parameters (should be sorted)
+
+
+| Parameter name | Parameter type | Required or not | Description                                                                                                                                                                                  |
+| ---------------- | ---------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| order_id       | string         | No              | The order id assigned by the exchange<br/>Only return the transaction records of the specified order<br/>If this parameter is not specified, please specify symbol                           |
+| symbol         | string         | No              | Trading pair code<br/>Such as BTC_USDT, ETH_USDT, etc.<br/>Only return the transaction records of the specified trading pair<br/>If this parameter is not specified, please specify order_id |
+| start_time     | int64          | No              | Limited to return the earliest time of transaction records                                                                                                                                   |
+| end_time       | int64          | No              | Limited to return the latest time of transaction records                                                                                                                                     |
+| before         | int64          | No              | Transaction record id<br/>Limited to return the maximum id of transaction records                                                                                                            |
+| after          | int64          | No              | Transaction record id<br/>Limited to return the minimum id of transaction records                                                                                                            |
+| limit          | int32          | No              | Limit the maximum number of returned results<br/>default 100                                                                                                                                 |
+
+* Parameter combinations and data sources supported by this interface
+
+  * symbol  --> database
+  * symbol + limit  --> database
+  * symbol + start_time  --> database
+  * symbol + start_time + limit  --> database
+  * symbol + end_time  --> database
+  * symbol + end_time + limit  --> database
+  * symbol + start_time + end_time  --> database
+  * symbol + start_time + end_time + limit  --> database
+  * symbol + before  --> database
+  * symbol + before + limit  --> database
+  * symbol + after  --> database
+  * symbol + after + limit  --> database
+  * order_id  --> database
+  * order_id + limit  --> database
+  * order_id + before  --> database
+  * order_id + before + limit  --> database
+
+> The returned results are sorted by transaction record id from small to large
+
+# User Data Streams
+
+## Overview
+
+> Example
+
+```javascript
+const CryptoJS = require("crypto-js");
+const WebSocket = require('ws');
+const biboxws = 'wss://user-wss.bibox360.com';
+const apikey = "9e2bd17ff73e8531c0f3c26f93e48bfa402a3b13"; // your apikey
+const secret = "ca55beb9e45d4f30b3959b464402319b9e12bac7"; // your secret
+const sign = CryptoJS.HmacSHA256("", secret).toString();
+
+let wsClass = function () {
+};
+
+
+wsClass.prototype._initWs = async function () {
+  let that = this;
+  console.log(biboxws);
+
+  let ws = new WebSocket(biboxws,"",{headers:{
+      'BIBOX-API-KEY': apikey,
+      'BIBOX-API-SIGN': sign,
+    }});
+  that.ws = ws;
+
+  ws.on('open', function open() {
+    console.log(new Date(), 'open')
+    setInterval(function () {
+      ws.ping(Date.now())
+    },30000)
+  });
+
+  ws.on('close', data => {
+    console.log('close, ', data);
+  });
+
+  ws.on('error',  data => {
+    console.log('error ',data);
+  });
+
+  ws.on('ping', data => {
+    console.log('ping ', data.toString('utf8'));
+  });
+
+  ws.on('pong', data => {
+    console.log('pong ', data.toString('utf8'));
+  });
+
+  ws.on('message', data => {
+    console.log(data.toString()) // the data may be is error message,check the data's stream is order or account
+  });
+};
+
+let instance = new wsClass();
+
+instance._initWs().catch(err => {
+  console.log(err);
+});
+
+```
+
+```python
+import websocket
+import hashlib
+import hmac
+
+ws_url = 'wss://user-wss.bibox360.com'
+API_KEY = '9e2bd17ff73e8531c0f3c26f93e48bfa402a3b13'
+SECRET_KEY = 'ca55beb9e45d4f30b3959b464402319b9e12bac7'
+
+def on_message(ws, message):
+    print(message)
+
+
+def on_error(ws, error):
+    print(error)
+
+
+def on_close(ws):
+    print("### closed ###")
+
+
+def on_open(ws):
+    print("### opened ###")
+
+
+def connect():
+    # websocket.enableTrace(True)
+
+    sign = hmac.new(SECRET_KEY.encode("utf-8"), "".encode('utf-8'), hashlib.sha256).hexdigest()
+    header = {
+        'BIBOX-API-KEY': API_KEY,
+        'BIBOX-API-SIGN': sign,
+    }
+    ws = websocket.WebSocketApp(ws_url,
+                                header=header,
+                                on_message=on_message,
+                                on_error=on_error,
+                                on_close=on_close)
+    ws.on_open = on_open
+    ws.run_forever(ping_interval=30, ping_timeout=5)
+
+
+if __name__ == "__main__":
+    connect()
+
+```
+
+Using the Websocket push service, you can obtain the account balance and order change information in time.
+
+**Connect to Websocket server**
+
+Please use the following URL to connect to the Websocket server:
+
+wss://user-wss.bibox360.com
+
+**When connecting, please append the following HTTP request headers**
+
+* BIBOX-API-KEY
+* BIBOX-API-SIGN
+* BIBOX-TIMESTAMP
+
+*Please refer to the [Authentication](#authentication) chapter for specific methods*
+
+> Data flow
+> After the connection is successfully established, the client will receive the balance change information and order change information of the account corresponding to the ApiKey. The format is as follows:
+
+```javascript
+{
+  "stream": "account",
+  "stream": { Account }
+}
+
+{
+  "stream": "order",
+  "data": { Order }
+}
+```
+
+## Account
+
+**When the account balance changes, the account event is received**
+
+```javascript
+{
+  "stream": "account",
+  "data": {
+    "s":"USDT",  // asset code
+    "a":10000,  // available amount
+    "h":0  // frozen amount
+  }
+}
+```
+
+## Orders
+
+**When the order changes, the order event will be received**
+
+```javascript
+{
+  "stream": "order",
+  "data": {
+     "i": 4611688217450643477,  // The order id assigned by the exchange
+     "I": "",  // User specified order id
+     "m": "BTC_USDT",  // trading pair code
+     "T": "limit",  // order type
+     "s": "sell",  // order direction
+     "Q": -0.0100,  // order amount
+     "P": 10043.8500,  // Order price
+     "t": "gtc",  // Time In Force
+     "o": false,  // Post Only
+     "S": "filled",  // Order status
+     "E": -0.0100,  // transaction volume
+     "e": -100.43850000,  // transaction value
+     "C": 1643193746043,  // creation time
+     "U": 1643193746464,  // update time
+     "n": 2,  // Number of transactions
+  }
+}
+```
