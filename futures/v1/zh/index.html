@@ -461,14 +461,14 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.bost.com'>开始交易</a></li>
+            <li><a href='https://www.trade-planets.com'>开始交易</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='u'>U本位合约</h1><h2 id='api'>备用api域名列表</h2>
-<p><a href="https://api.bost.tel/v1/public/queryApiDomain">https://api.bost.tel/v1/public/queryApiDomain</a></p>
+<p><a href="https://api.trade-planets.com/v1/public/queryApiDomain">https://api.trade-planets.com/v1/public/queryApiDomain</a></p>
 <h2 id='1'>1.签名接口请求方式</h2>
 <blockquote>
 <p>完整例子</p>
@@ -492,7 +492,7 @@
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//你的 apikey 密码</span>
 <span class="kd">let</span> <span class="nx">sign</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacMD5</span><span class="p">(</span><span class="nx">strToSign</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span><span class="c1">//4.签名后的结果</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/ac/transfer</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/ac/transfer</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
         <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span><span class="c1">//请求路径</span>
@@ -523,8 +523,8 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="c1"># BASE_URL = 'https://api.bost.com'  # 中国大陆 https://api.bost.tel
-</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="c1"># BASE_URL = 'https://api.trade-planets.com'  # 中国大陆 https://api.trade-planets.com
+</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -610,7 +610,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/ac/transfer"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/ac/transfer"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -721,7 +721,7 @@
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//你的 apikey 密码</span>
 <span class="kd">let</span> <span class="nx">sign</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacMD5</span><span class="p">(</span><span class="nx">strToSign</span><span class="p">,</span> <span class="nx">secret</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span><span class="c1">//4.签名后的结果</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/ac/transfer</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/ac/transfer</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">({</span>
         <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span><span class="c1">//请求路径</span>
@@ -752,8 +752,8 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="c1"># BASE_URL = 'https://api.bost.com'  # 中国大陆 https://api.bost.tel
-</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="c1"># BASE_URL = 'https://api.trade-planets.com'  # 中国大陆 https://api.trade-planets.com
+</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -839,7 +839,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/ac/transfer"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/ac/transfer"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -887,7 +887,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/ac/transfer</p>
+<p>POST https://api.trade-planets.com/api/v1/ac/transfer</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -964,7 +964,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/open</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/open</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -1013,8 +1013,8 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="c1"># BASE_URL = 'https://api.bost.com'  # 墙内 https://api.bost.tel
-</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="c1"># BASE_URL = 'https://api.trade-planets.com'  # 墙内 https://api.trade-planets.com
+</span><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -1103,7 +1103,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/open"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/open"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -1158,7 +1158,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/open</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/open</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1336,7 +1336,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/close</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/close</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -1379,7 +1379,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -1462,7 +1462,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/close"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/close"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -1506,7 +1506,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/close</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/close</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1568,7 +1568,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/closeBatch</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/closeBatch</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -1611,7 +1611,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -1694,7 +1694,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/closeBatch"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/closeBatch"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -1738,7 +1738,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/closeBatch</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/closeBatch</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1800,7 +1800,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/closeAll</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/closeAll</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -1844,7 +1844,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -1927,7 +1927,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/closeAll"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/closeAll"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -1971,7 +1971,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/closeAll</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/closeAll</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -2033,7 +2033,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/planOpen</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/planOpen</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -2082,7 +2082,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -2171,7 +2171,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/planOpen"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/planOpen"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -2224,7 +2224,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/planOpen</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/planOpen</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -2334,7 +2334,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/planOrderList</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/planOrderList</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -2377,7 +2377,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -2460,7 +2460,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/planOrderList"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/planOrderList"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -2506,7 +2506,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/planOrderList</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/planOrderList</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -2625,7 +2625,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/planClose</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/planClose</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -2668,7 +2668,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -2751,7 +2751,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/planClose"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/planClose"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -2797,7 +2797,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/planClose</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/planClose</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -2859,7 +2859,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/planCloseAll</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/planCloseAll</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -2902,7 +2902,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -2985,7 +2985,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/planCloseAll"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/planCloseAll"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -3029,7 +3029,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/planCloseAll</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/planCloseAll</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -3091,7 +3091,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/changeMargin</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/changeMargin</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -3136,7 +3136,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -3221,7 +3221,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/changeMargin"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/changeMargin"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -3267,7 +3267,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/changeMargin</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/changeMargin</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -3345,7 +3345,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/changeMode</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/changeMode</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -3391,7 +3391,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -3477,7 +3477,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/changeMode"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/changeMode"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -3524,7 +3524,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/changeMode</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/changeMode</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -3610,7 +3610,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/assets</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/assets</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -3653,7 +3653,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -3736,7 +3736,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/assets"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/assets"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -3780,7 +3780,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/assets</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/assets</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -3878,7 +3878,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/position</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/position</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -3922,7 +3922,7 @@
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -4006,7 +4006,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/position"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/position"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -4054,7 +4054,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/position</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/position</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -4197,7 +4197,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/list</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/list</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -4241,7 +4241,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -4325,7 +4325,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/list"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/list"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -4370,7 +4370,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/list</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/list</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -4564,7 +4564,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/detail</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/detail</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -4607,7 +4607,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -4690,7 +4690,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/detail"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/detail"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -4736,7 +4736,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/detail</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/detail</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -4906,7 +4906,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/listBatch</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/listBatch</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -4949,7 +4949,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -5032,7 +5032,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/listBatch"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/listBatch"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -5078,7 +5078,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/listBatch</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/listBatch</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -5250,7 +5250,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/tc/order/listBatchByClientOid</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/tc/order/listBatchByClientOid</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -5293,7 +5293,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -5376,7 +5376,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/tc/order/listBatchByClientOid"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/tc/order/listBatchByClientOid"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -5422,7 +5422,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/tc/order/listBatchByClientOid</p>
+<p>POST https://api.trade-planets.com/api/v1/tc/order/listBatchByClientOid</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -5592,7 +5592,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/tc/timestamp</p>
+<p>GET https://api.trade-planets.com/api/v1/tc/timestamp</p>
 
 <blockquote>
 <p>Response</p>
@@ -5624,7 +5624,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/qc/deal/log</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/qc/deal/log</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -5670,7 +5670,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -5755,7 +5755,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/qc/deal/log"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/qc/deal/log"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -5801,7 +5801,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/qc/deal/log</p>
+<p>POST https://api.trade-planets.com/api/v1/qc/deal/log</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -5967,7 +5967,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/qc/order/detail</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/qc/order/detail</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -6013,7 +6013,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -6098,7 +6098,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/qc/order/detail"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/qc/order/detail"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -6144,7 +6144,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/qc/order/detail</p>
+<p>POST https://api.trade-planets.com/api/v1/qc/order/detail</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -6293,7 +6293,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/qc/order/history</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/qc/order/history</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -6341,7 +6341,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -6428,7 +6428,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/qc/order/history"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/qc/order/history"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -6476,7 +6476,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/qc/order/history</p>
+<p>POST https://api.trade-planets.com/api/v1/qc/order/history</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -6687,7 +6687,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.bost.com/api/v1/qc/order/by/id</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/qc/order/by/id</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -6732,7 +6732,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
 <span class="n">API_KEY</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.bost.com'</span>  <span class="c1"># 'https://api.bost.tel' #
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s">'https://api.trade-planets.com'</span>  <span class="c1"># 'https://api.trade-planets.com' #
 </span>
 
 <span class="k">def</span> <span class="nf">do_sign</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
@@ -6816,7 +6816,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.bost.com/api/v1/qc/order/by/id"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/qc/order/by/id"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -6861,7 +6861,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.bost.com/api/v1/qc/order/by/id</p>
+<p>POST https://api.trade-planets.com/api/v1/qc/order/by/id</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -7043,7 +7043,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/qc/fund/rate</p>
+<p>GET https://api.trade-planets.com/api/v1/qc/fund/rate</p>
 
 <blockquote>
 <p>Response</p>
@@ -7099,7 +7099,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/qc/tag/price</p>
+<p>GET https://api.trade-planets.com/api/v1/qc/tag/price</p>
 
 <blockquote>
 <p>Response</p>
@@ -7161,7 +7161,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/qc/value</p>
+<p>GET https://api.trade-planets.com/api/v1/qc/value</p>
 
 <blockquote>
 <p>Response</p>
@@ -7251,7 +7251,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/qc/unit</p>
+<p>GET https://api.trade-planets.com/api/v1/qc/unit</p>
 
 <blockquote>
 <p>Response</p>
@@ -7300,7 +7300,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <h2 id='28-k'>28.查询k线</h2>
 <ul>
 <li><p>1.请求路径</p></li>
-<li><p>GET https://api.bost.com/api/v1/mdata/kline?pair=4BTC_USDT&amp;period=1min&amp;size=10</p></li>
+<li><p>GET https://api.trade-planets.com/api/v1/mdata/kline?pair=4BTC_USDT&amp;period=1min&amp;size=10</p></li>
 <li><p>2.请求参数</p></li>
 </ul>
 
@@ -7408,7 +7408,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.bost.com/api/v1/mdata/depth?pair=4BTC_USDT&amp;size=10</p>
+<p>GET https://api.trade-planets.com/api/v1/mdata/depth?pair=4BTC_USDT&amp;size=10</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -7516,7 +7516,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">wsClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -7596,7 +7596,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 </span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 
 
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -7704,7 +7704,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
       <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ws</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebSocket</span> <span class="p">(</span><span class="n">wsuri</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">ws</span><span class="p">.</span><span class="n">OnMessage</span> <span class="p">+=</span> <span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
@@ -7755,7 +7755,7 @@ ps是指已经委托的止损仓位数量，剩余可以作为止损委托的仓
 <li>1.订阅路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -7844,7 +7844,7 @@ k线某周期开始时间,
 <span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">wsClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -7923,7 +7923,7 @@ k线某周期开始时间,
 </span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 
 
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -8031,7 +8031,7 @@ k线某周期开始时间,
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
       <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ws</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebSocket</span> <span class="p">(</span><span class="n">wsuri</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">ws</span><span class="p">.</span><span class="n">OnMessage</span> <span class="p">+=</span> <span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
@@ -8080,7 +8080,7 @@ k线某周期开始时间,
 <li>1.订阅路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -8161,7 +8161,7 @@ k线某周期开始时间,
 <span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">wsClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -8240,7 +8240,7 @@ k线某周期开始时间,
 </span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 
 
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -8348,7 +8348,7 @@ k线某周期开始时间,
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
       <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ws</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebSocket</span> <span class="p">(</span><span class="n">wsuri</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">ws</span><span class="p">.</span><span class="n">OnMessage</span> <span class="p">+=</span> <span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
@@ -8399,7 +8399,7 @@ k线某周期开始时间,
 <li>1.订阅路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -8560,7 +8560,7 @@ k线某周期开始时间,
 <span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">wsClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -8639,7 +8639,7 @@ k线某周期开始时间,
 </span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 
 
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -8747,7 +8747,7 @@ k线某周期开始时间,
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
       <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ws</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebSocket</span> <span class="p">(</span><span class="n">wsuri</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">ws</span><span class="p">.</span><span class="n">OnMessage</span> <span class="p">+=</span> <span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
@@ -8798,7 +8798,7 @@ k线某周期开始时间,
 <li>1.订阅路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -8903,7 +8903,7 @@ k线某周期开始时间,
 <span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">wsClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -8982,7 +8982,7 @@ k线某周期开始时间,
 </span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">zlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 
 
 <span class="k">def</span> <span class="nf">stringify</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -9090,7 +9090,7 @@ k线某周期开始时间,
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+      <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
       <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ws</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebSocket</span> <span class="p">(</span><span class="n">wsuri</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">ws</span><span class="p">.</span><span class="n">OnMessage</span> <span class="p">+=</span> <span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
@@ -9139,7 +9139,7 @@ k线某周期开始时间,
 <li>1.订阅路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -9230,7 +9230,7 @@ k线某周期开始时间,
 <span class="kd">const</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">zlib</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://npush.bost360.com/cbu</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 1.请求路径</span>
+<span class="kd">const</span> <span class="nx">bostws</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">wss://push.trade-planets.com/cbu</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// 1.请求路径</span>
 
 <span class="kd">let</span> <span class="nx">ws</span><span class="p">;</span>
 
@@ -9369,7 +9369,7 @@ k线某周期开始时间,
 <span class="kn">import</span> <span class="nn">hmac</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 
-<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://npush.bost360.com/cbu'</span>
+<span class="n">ws_url</span> <span class="o">=</span> <span class="s">'wss://push.trade-planets.com/cbu'</span>
 <span class="n">apikey</span> <span class="o">=</span> <span class="s">'900625568558820892a8c833c33ebc8fd2701efe'</span>  <span class="c1"># your apikey
 </span><span class="n">secret</span> <span class="o">=</span> <span class="s">'c708ac3e70d115ec29efbee197330627d7edf842'</span>  <span class="c1"># your apikey secret
 </span>
@@ -9502,7 +9502,7 @@ k线某周期开始时间,
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span> <span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://npush.bost360.com/cbu"</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">wsuri</span> <span class="p">=</span> <span class="s">"wss://push.trade-planets.com/cbu"</span><span class="p">;</span>
         <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
         <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -9569,7 +9569,7 @@ k线某周期开始时间,
 <li>1.请求路径</li>
 </ul>
 
-<p>wss://npush.bost360.com/cbu</p>
+<p>wss://push.trade-planets.com/cbu</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -10564,9 +10564,9 @@ k线某周期开始时间,
         if(url.indexOf('en') != -1){
           //英文
           spot_txt.innerHTML = 'Spot'
-          spot_txt.href=url.replace('zh/', 'en/');
+          spot_txt.href = spot_txt.href.replace('zh/', 'en/');
           future_txt.innerHTML = 'USDT-M'
-          future_txt.href=url.replace('zh/', 'en/');
+          future_txt.href=future_txt.href.replace('zh/', 'en/');
           lang_btn1.innerHTML = '日本語'
           lang_btn1.href=url.replace('en/', 'ja/');
           lang_btn2.innerHTML = '简体中文'
@@ -10577,9 +10577,9 @@ k线某周期开始时间,
         } else if (url.indexOf('ja') != -1) {
           //日文
           spot_txt.innerHTML = '現物取引'
-          spot_txt.href=url.replace('zh/', 'ja/');
+          spot_txt.href = spot_txt.href.replace('zh/', 'ja/');
           future_txt.innerHTML = 'U本位永続契約'
-          future_txt.href=url.replace('zh/', 'ja/');
+          future_txt.href=future_txt.href.replace('zh/', 'ja/');
           lang_btn1.innerHTML = '简体中文'
           lang_btn1.href=url.replace('ja/', 'zh/');
           lang_btn2.innerHTML = 'English'
@@ -10590,9 +10590,9 @@ k线某周期开始时间,
         } else {
           //中文
           spot_txt.innerHTML = '现货'
-          spot_txt.href=url.replace('zh/', 'zh/');
+          spot_txt.href = spot_txt.href.replace('zh/', 'zh/');
           future_txt.innerHTML = 'U本位永续合约'
-          future_txt.href=url.replace('zh/', 'zh/');
+          future_txt.href = future_txt.href.replace('zh/', 'zh/');
           lang_btn1.innerHTML = '日本語'
           lang_btn1.href=url.replace('zh/', 'ja/');
           lang_btn2.innerHTML = 'English'
