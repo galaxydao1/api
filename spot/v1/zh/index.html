@@ -702,7 +702,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/ping</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/ping</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -720,7 +720,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/ping'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/ping'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -743,7 +743,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/ping"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/ping"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -763,7 +763,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/ping</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/ping</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -818,7 +818,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/pairList</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/pairList</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -836,7 +836,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/pairList'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/pairList'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -859,7 +859,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/pairList"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/pairList"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -879,7 +879,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/pairList</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/pairList</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -958,7 +958,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -976,7 +976,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -999,7 +999,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/kline?pair=BTC_USDT&amp;period=1min&amp;size=2"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1019,7 +1019,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/kline?pair=BTC_USDT&amp;period=1min&amp;size=10</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/kline?pair=BTC_USDT&amp;period=1min&amp;size=10</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1134,7 +1134,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/marketAll</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/marketAll</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -1152,7 +1152,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/marketAll'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/marketAll'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1175,7 +1175,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/marketAll"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/marketAll"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1195,7 +1195,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/marketAll</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/marketAll</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1354,7 +1354,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/market?pair=DOGE_USDT</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/market?pair=DOGE_USDT</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -1372,7 +1372,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/market?pair=DOGE_USDT'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/market?pair=DOGE_USDT'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1395,7 +1395,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/market?pair=DOGE_USDT"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/market?pair=DOGE_USDT"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1415,7 +1415,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/market?pair=DOGE_USDT</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/market?pair=DOGE_USDT</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1558,7 +1558,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/depth?pair=BTC_USDT&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/depth?pair=BTC_USDT&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -1576,7 +1576,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/depth?pair=BTC_USDT&amp;size=2'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/depth?pair=BTC_USDT&amp;size=2'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1599,7 +1599,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/depth?pair=BTC_USDT&amp;size=2"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/depth?pair=BTC_USDT&amp;size=2"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1619,7 +1619,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/depth?pair=DOGE_BTC&amp;size=10</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/depth?pair=DOGE_BTC&amp;size=10</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1732,7 +1732,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/deals?pair=BTC_USDT&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/deals?pair=BTC_USDT&amp;size=2</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -1750,7 +1750,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/deals?pair=BTC_USDT&amp;size=2'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/deals?pair=BTC_USDT&amp;size=2'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1773,7 +1773,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/deals?pair=BTC_USDT&amp;size=2"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/deals?pair=BTC_USDT&amp;size=2"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1793,7 +1793,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/deals?pair=BTC_USDT&amp;size=10</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/deals?pair=BTC_USDT&amp;size=10</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -1894,7 +1894,7 @@
 <p>Request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/mdata/ticker?pair=BTC_USDT</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/mudata/ticker?pair=BTC_USDT</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">request</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> 
     <span class="kd">function</span> <span class="nx">optionalCallback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">httpResponse</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -1912,7 +1912,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/mdata/ticker?pair=BTC_USDT'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/mudata/ticker?pair=BTC_USDT'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span> <span class="o">+</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">resp</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
@@ -1935,7 +1935,7 @@
         <span class="p">{</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/mdata/ticker?pair=BTC_USDT"</span><span class="p">;</span>
+             <span class="n">String</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/mudata/ticker?pair=BTC_USDT"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">responseBody</span> <span class="p">=</span> <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetStringAsync</span><span class="p">(</span><span class="n">uri</span><span class="p">);</span>
 
              <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">responseBody</span><span class="p">);</span>
@@ -1955,7 +1955,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>GET https://api.trade-planets.com/v3/mdata/ticker?pair=BTC_USDT</p>
+<p>GET https://api.trade-planets.com/api/v1/mudata/ticker?pair=BTC_USDT</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -2531,7 +2531,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3.1/spot/account/assets</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/st/account/assets</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -2593,7 +2593,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3.1/spot/account/assets'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/st/account/assets'</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'select'</span><span class="p">:</span> <span class="mi">1</span>
     <span class="p">}</span>
@@ -2657,7 +2657,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3.1/spot/account/assets"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/st/account/assets"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -2701,7 +2701,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3.1/spot/account/assets</p>
+<p>POST https://api.trade-planets.com/api/v1/st/account/assets</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -4494,7 +4494,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/spot/order/trade</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/spot/order/trade</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -4560,7 +4560,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/spot/order/trade'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/spot/order/trade'</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'pair'</span><span class="p">:</span> <span class="s">'DOGE_USDT'</span><span class="p">,</span>
         <span class="s">'order_side'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -4628,7 +4628,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/spot/order/trade"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/spot/order/trade"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -4676,7 +4676,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3/spot/order/trade</p>
+<p>POST https://api.trade-planets.com/api/v1/spot/order/trade</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -4784,7 +4784,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/spot/order/cancel</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/spot/order/cancel</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -4846,7 +4846,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/spot/order/cancel'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/spot/order/cancel'</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'order_id'</span><span class="p">:</span> <span class="s">"12845594488036185"</span>
     <span class="p">}</span>
@@ -4910,7 +4910,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/spot/order/cancel"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/spot/order/cancel"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -4954,7 +4954,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3/spot/order/cancel</p>
+<p>POST https://api.trade-planets.com/api/v1/spot/order/cancel</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -5018,7 +5018,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/spot/order/cancelBatch</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/spot/order/cancelBatch</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -5080,7 +5080,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/spot/order/cancelBatch'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/spot/order/cancelBatch'</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'order_ids'</span><span class="p">:</span> <span class="p">[</span><span class="s">"12845594488036185"</span><span class="p">,</span><span class="s">"12845594488036186"</span><span class="p">]</span>
     <span class="p">}</span>
@@ -5144,7 +5144,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/spot/order/cancelBatch"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/spot/order/cancelBatch"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -5188,7 +5188,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3/spot/order/cancelBatch</p>
+<p>POST https://api.trade-planets.com/api/v1/spot/order/cancelBatch</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -5252,7 +5252,7 @@
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">CryptoJS</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">crypto-js</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">request</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/v3/spot/order/cancelAll</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://api.trade-planets.com/api/v1/spot/order/cancelAll</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">let</span> <span class="nx">apikey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">900625568558820892a8c833c33ebc8fd2701efe</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey</span>
 <span class="kd">let</span> <span class="nx">secret</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">c708ac3e70d115ec29efbee197330627d7edf842</span><span class="dl">"</span><span class="p">;</span> <span class="c1">//your apikey secret</span>
@@ -5314,7 +5314,7 @@
 
 
 <span class="k">def</span> <span class="nf">do_request</span><span class="p">():</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="s">'/v3/spot/order/cancelAll'</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">'/api/v1/spot/order/cancelAll'</span>
     <span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">"pair"</span><span class="p">:</span> <span class="s">"BTC_USDT"</span>
     <span class="p">}</span>
@@ -5378,7 +5378,7 @@
           <span class="c1">// Call asynchronous network methods in a try/catch block to handle exceptions.</span>
           <span class="k">try</span>
           <span class="p">{</span>
-             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/v3/spot/order/cancelAll"</span><span class="p">;</span>
+             <span class="kt">string</span> <span class="n">uri</span> <span class="p">=</span> <span class="s">"https://api.trade-planets.com/api/v1/spot/order/cancelAll"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">apikey</span> <span class="p">=</span> <span class="s">"900625568558820892a8c833c33ebc8fd2701efe"</span><span class="p">;</span>
              <span class="kt">string</span> <span class="n">secret</span> <span class="p">=</span> <span class="s">"c708ac3e70d115ec29efbee197330627d7edf842"</span><span class="p">;</span>
 
@@ -5422,7 +5422,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3/spot/order/cancelAll</p>
+<p>POST https://api.trade-planets.com/api/v1/spot/order/cancelAll</p>
 
 <ul>
 <li>2.请求参数</li>
@@ -7689,7 +7689,7 @@
 <li>1.请求路径</li>
 </ul>
 
-<p>POST https://api.trade-planets.com/v3.1/spot/account/bills</p>
+<p>POST https://api.trade-planets.com/api/v1/st/account/bills</p>
 
 <ul>
 <li>2.请求参数</li>
